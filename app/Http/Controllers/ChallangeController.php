@@ -42,11 +42,27 @@ class ChallangeController extends Controller
 
     public function update(Request $request)
     {
-        // dd($request->user_id);
-        $challange = Auth::user()->challanges();
-        dd($challange);
-        $challange = Challange::find($request->user_id)->where('week', $week);
-        dd($challange);
+        $challange = Challange::where([
+            'week' => $request->week, 
+            'user_id' => $request->user_id
+        ])->first();
+        // dd($challange);
+        if(!empty($challange)){
+            // update selected user
+            $challange->update(request()->validate([
+                'weight'=>'required',
+            ]));
+        }
+        else{
+            // insert if weight doesn't exist          
+            Challange::create(request()->validate([              
+                'weight'=>'required',
+                'week'=>'required',
+                'user_id'=>'required',
+            ]));
+        }
+
+        return redirect('/dashboard');
     }
 
     public function destroy($id)

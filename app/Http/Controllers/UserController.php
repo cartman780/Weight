@@ -12,8 +12,9 @@ class UserController extends Controller
     {
         $users = User::all();
         
-        // get all challanges (in descending order ->orderBy('created_at', 'desc');)
+        // get all challanges descending
         $challanges = Challange::orderBy('week', 'DESC')->get();
+        
         
         // make an array for every [week] that has an array with ['user' => 'weight'] in user_id order
         $weightArray = array();
@@ -24,7 +25,7 @@ class UserController extends Controller
 
         // go through every week
         for ($i = $startweek; $i <= $endweek; $i++) {
-            // $array3[$i] = array();
+            
 
             // get weight foreach user and if no value set 0
             foreach ($users as $user) {
@@ -43,7 +44,7 @@ class UserController extends Controller
                 }
             }
         }
-
+        // dd($weightArray);
         return view('dashboard', compact('users', 'weightArray'));
     }
 
