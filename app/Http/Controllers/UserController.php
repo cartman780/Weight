@@ -10,8 +10,41 @@ class UserController extends Controller
 {
     public function index()
     {
-        $challanges = Challange::all();
-        return view('dashboard', compact('challanges'));
+        $users = User::all();
+        
+        // get all challanges (in descending order ->orderBy('created_at', 'desc');)
+        $challanges = Challange::orderBy('week', 'DESC')->get();
+        
+        // make an array for every [week] that has an array with ['user' => 'weight'] in user_id order
+        $weightArray = array();
+
+        // how long is the list depending on amount of weeks
+        $startweek = 1;
+        $endweek = Challange::max('week');
+
+        // go through every week
+        for ($i = $startweek; $i <= $endweek; $i++) {
+            // $array3[$i] = array();
+
+            // get weight foreach user and if no value set 0
+            foreach ($users as $user) {
+
+                // get challange values per week
+                $challenge = $user->challanges()->where('week', '=', $i)->get();
+
+                // if there is a challange
+                if (count($challenge) > 0) {
+                    // set a weight value for that user *!!FIX make weigt alue unique!!*
+                    $weightArray[$i][$user->id] = $challenge[0]->weight;
+                }
+                else {
+                    // set 0 if no weight isset
+                    $weightArray[$i][$user->id] = 0;
+                }
+            }
+        }
+
+        return view('dashboard', compact('users', 'weightArray'));
     }
 
     public function create()

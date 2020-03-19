@@ -26,7 +26,8 @@ Route::middleware('auth')->group(function () {
     // challange
     Route::post('/dashboard', 'ChallangeController@store')->name('store'); 
     Route::get('/create', 'ChallangeController@create')->name('create');
-    // Route::put('/{challange}/update', 'ChallangeController@create')->name('update');
+    Route::get('/{week}/edit', 'ChallangeController@edit')->name('edit');
+    Route::put('/update', 'ChallangeController@update')->name('update');
     // Route::get('/{challange}/destroy', 'ChallangeController@destroy')->name('destroy');
 
     // weight

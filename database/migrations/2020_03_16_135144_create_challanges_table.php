@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWeightsTable extends Migration
+class CreateChallangesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateWeightsTable extends Migration
      */
     public function up()
     {
-        Schema::create('weights', function (Blueprint $table) {
+        Schema::create('challanges', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->default();
-            $table->unsignedBigInteger('challange_id')->default();
             $table->double('weight')->default();
+            $table->integer('week')->default();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateWeightsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('weights');
+        Schema::dropIfExists('challanges');
     }
 }
