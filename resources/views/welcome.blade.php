@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Afslank Challange
+                    Afslank Challenge
                 </div>
 
                 <div class="links">

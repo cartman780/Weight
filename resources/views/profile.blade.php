@@ -3,29 +3,21 @@
 @section('content')
     <h1>Profiel van {{ Auth::user()->name }}</h1>
     <div class="box">
-        <a href="/create" class="btn btn-sm btn-link float-right mb-3">Challange toevoegen</a>
+        {{-- <a href="/create" class="btn btn-sm btn-link float-right mb-3">Challange toevoegen</a> --}}
         <table class="table table-striped">
             <thead>
             <tr>   
                 <th scope="col">Week</th>
-                <th scope="col">René</th>
-                <th scope="col">Marcel</th>
-                <th scope="col">Patricia</th>
-                <th scope="col">Jeffrey</th>
-                <th scope="col">Actie</th>
+                <th scope="col">Gewicht</th>
+                <th scope="col" style="width: 100px;">Action</th>
             </tr>
             </thead>
             <tbody>
             @forelse($user->challanges as $challange)
             <tr>
-                <td>{{ $challange->id }}</td>
-                <td>{{ $challange->weight_rene }}</td>
-                <td>{{ $challange->weight_marcel }}</td>
-                <td>{{ $challange->weight_patricia }}</td>
-                <td>{{ $challange->weight_jeffrey }}</td>
-                <td><a href="/challange" class="btn btn-sm btn-primary" data-toggle="tooltip"
-                    data-placement="top" title=""
-                    data-original-title="Open klantdossier"><i class="uil-arrow-right"></i></a>
+                <td>{{ $challange->week }}</td>
+                <td>{{ $challange->weight }}</td>
+                <td>
                     <a href="/challange/edit" class="btn btn-sm btn-success" data-toggle="tooltip"
                     data-placement="top" title=""
                     data-original-title="Pas klantdossier aan"><i class="uil-pen"></i></a>

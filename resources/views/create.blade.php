@@ -3,6 +3,14 @@
 @section('content')
 
     <h1>Challange toevoegen</h1>
+    
+    <!-- succes alert -->
+    @if (session('failMsg'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('failMsg') }}
+    </div>
+    @endif
+
     <div class="box">
         <form action="/dashboard" method="post">
             @csrf

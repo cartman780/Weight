@@ -20,14 +20,26 @@ class ChallangeController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
-        $challange = Challange::create(request()->validate([
-            'week'=>'required',
-            'weight'=>'required',
-            'user_id'=>'required',
-        ]));
+        // if week already in table return error
+        $ceckChallange = Challange::where([
+            'week' => $request->week, 
+        ])->first();
+        
+        if(empty($ceckChallange)){
+            $challange = Challange::create(request()->validate([
+                'week'=>'required',
+                'weight'=>'required',
+                'user_id'=>'required',
+            ]));
 
-        return redirect('/dashboard')->with('succesMsg', 'Klant is met succes toegevoegd.');;
+            return redirect('/dashboard')->with('succesMsg', 'Challenge is met succes toegevoegd.');
+        }else{
+            return redirect('/create')->with('failMsg', 'Challenge bestaat al.');
+        }
+    }
+
+    public function highLow(){
+        
     }
 
     public function show($id)
@@ -65,8 +77,10 @@ class ChallangeController extends Controller
         return redirect('/dashboard');
     }
 
-    public function destroy($id)
+    public function destroy($weeknumber)
     {
-        //
+        Challange::where('week', $weeknumber)->delete();
+
+        return redirect('/dashboard');
     }
 }

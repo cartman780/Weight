@@ -44,7 +44,6 @@ class UserController extends Controller
                 }
             }
         }
-        // dd($weightArray);
         return view('dashboard', compact('users', 'weightArray'));
     }
 

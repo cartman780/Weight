@@ -3,6 +3,7 @@
 @section('content')
 
 <h1>Challenge week {{ $week }} aanpassen</h1>
+
     <div class="box">
         <form action="/update" method="post">
             @csrf
