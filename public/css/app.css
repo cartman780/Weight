@@ -10886,10 +10886,20 @@ body {
   background-color: #fff;
 }
 
+.background {
+  background-image: url(/images/sport2_bg.jpg?2cc3ab2b59ec3361c625e29b76af8954);
+  height: 100vh;
+  background-position: center;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+
 .box {
+  opacity: 90%;
   padding: 10px;
   background-color: #F8F8F8;
   border: 2px solid #E8E8E8;
   border-radius: 5px;
+  box-shadow: -5px 5px 30px grey;
 }
 

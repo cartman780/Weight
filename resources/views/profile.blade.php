@@ -13,10 +13,18 @@
             </tr>
             </thead>
             <tbody>
-            @forelse($user->challanges as $challange)
+            @forelse($weightDif as $weeknumber => $week)            
             <tr>
-                <td>{{ $challange->week }}</td>
-                <td>{{ $challange->weight }}</td>
+                <td>{{$weeknumber}}</td>
+                        <td>{{ $week['weight'] }}
+                            @if ($week['weightDif'] < 0)
+                                <span style="color:red;">&#9660 {{$week['weightDif']}}🍔</span>
+                            @elseif ($week['weightDif'] > 0)
+                                <span style="color:green;">&#9660 {{$week['weightDif']}}🎉</span>
+                            @else
+                                <span style="color:yellow;">&#9660 {{$week['weightDif']}}😐</span>
+                            @endif
+                        </td>
                 <td>
                     <a href="/challange/edit" class="btn btn-sm btn-success" data-toggle="tooltip"
                     data-placement="top" title=""
