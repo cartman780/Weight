@@ -30,6 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/update', 'ChallangeController@update')->name('update');
     Route::get('/{weeknumber}/destroy', 'ChallangeController@destroy')->name('destroy');
 
+    // posts
+    Route::post('/store', 'PostController@store')->name('post.store');
+    Route::get('/posts', 'PostController@index')->name('posts');
+
     // weight
     
 });

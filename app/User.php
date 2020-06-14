@@ -43,4 +43,9 @@ class User extends Authenticatable
     public function challanges(){
         return $this->hasMany(Challange::class);
     }
+
+    // posts relation
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
 }

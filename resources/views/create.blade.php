@@ -2,8 +2,8 @@
 
 @section('content')
 
-    <h1>Challange toevoegen</h1>
-    
+    <h1>Challenge toevoegen</h1>
+
     <!-- succes alert -->
     @if (session('failMsg'))
     <div class="alert alert-danger" role="alert">
@@ -15,13 +15,13 @@
         <form action="/dashboard" method="post">
             @csrf
             <div class="row">
-                <div class="col-3">
+                <div class="col-lg-3">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Week</label>
                         <input type="number" name="week" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-lg-3">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Gewicht {{ Auth::user()->name }}</label>
                         <input type="number" step=0.1 name="weight" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">

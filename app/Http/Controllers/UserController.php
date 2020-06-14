@@ -44,7 +44,48 @@ class UserController extends Controller
                 }
             }
         }
+        
+
         return view('dashboard', compact('users', 'weightArray'));
+    }
+
+    public function highLow(){
+        // get user id
+        $user_id = auth()->user()->id;
+
+        // make new array for weight difference per week
+        $weightDif = array();
+
+        // get list of weights of user
+        $challenges = Challange::where('user_id', $user_id)->get();
+        
+        // make a buffer for previous values in the array
+        $buffer = array();
+        
+        // check if week weight is higher or lower than last week
+        foreach ($challenges as $challenge) {
+            $week = $challenge->week;
+            
+            $weight = $challenge->weight;
+            
+            // set default value if buffer is not set
+            if (!isset($buffer[$week])) {
+                $buffer[$week] = $weight;
+            }
+            
+            // weight difference
+            $weightDif[$week]['weight'] = $weight;
+            $weightDif[$week]['weightDif'] = $buffer[$week] - $weight;
+            
+            $week++;
+            
+            // add value to buffer so the next value can check if it's higher or lower.
+            $buffer[$week] = $weight;
+            
+        }  
+        // dd($weightDif);
+        
+        return $weightDif;      
     }
 
     public function create()
@@ -59,7 +100,9 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return view('profile', compact('user'));
+        // check if weigt is heigher or lower and give is a color
+        $weightDif = $this->highLow();
+        return view('profile', compact('user', 'weightDif'));
     }
 
     public function edit($id)

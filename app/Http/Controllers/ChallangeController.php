@@ -38,9 +38,6 @@ class ChallangeController extends Controller
         }
     }
 
-    public function highLow(){
-        
-    }
 
     public function show($id)
     {
