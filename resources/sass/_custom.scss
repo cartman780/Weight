@@ -13,6 +13,14 @@ body{
     
 }
 
+.background{
+    background-image: url('../public/img/sport2_bg.jpg');
+    height: 100vh;
+    background-position: center;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
 .box{
     opacity: 90%;
     padding: 10px;

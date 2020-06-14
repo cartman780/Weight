@@ -10889,6 +10889,14 @@ a.text-dark:focus {
   background-size: cover;
 }
 
+.background {
+  background-image: url(/images/sport2_bg.jpg?2cc3ab2b59ec3361c625e29b76af8954);
+  height: 100vh;
+  background-position: center;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+
 .box {
   opacity: 90%;
   padding: 10px;
