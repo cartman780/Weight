@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-use App\Challange;
+use App\challenge;
 
 class User extends Authenticatable
 {
@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'nickname', 'email', 'password',
     ];
 
     /**
@@ -39,9 +39,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // challange relation
+    // challenge relation
     public function challanges(){
-        return $this->hasMany(Challange::class);
+        return $this->hasMany(challenge::class);
     }
 
     // posts relation

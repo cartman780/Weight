@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateChallangesTable extends Migration
+class CreateChallengesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateChallangesTable extends Migration
      */
     public function up()
     {
-        Schema::create('challanges', function (Blueprint $table) {
+        Schema::create('challenges', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->default();
             $table->double('weight')->default();

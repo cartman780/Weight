@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Challange;
+use App\challenge;
 use App\User;
 
 class ChallangeController extends Controller
 {
     public function index()
     {
-        // 
+        //
     }
 
     public function create()
@@ -21,12 +21,12 @@ class ChallangeController extends Controller
     public function store(Request $request)
     {
         // if week already in table return error
-        $ceckChallange = Challange::where([
-            'week' => $request->week, 
+        $ceckChallange = challenge::where([
+            'week' => $request->week,
         ])->first();
-        
+
         if(empty($ceckChallange)){
-            $challange = Challange::create(request()->validate([
+            $challange = challenge::create(request()->validate([
                 'week'=>'required',
                 'weight'=>'required',
                 'user_id'=>'required',
@@ -51,11 +51,11 @@ class ChallangeController extends Controller
 
     public function update(Request $request)
     {
-        $challange = Challange::where([
-            'week' => $request->week, 
+        $challange = challenge::where([
+            'week' => $request->week,
             'user_id' => $request->user_id
         ])->first();
-        // dd($challange);
+        // dd($challenge);
         if(!empty($challange)){
             // update selected user
             $challange->update(request()->validate([
@@ -63,8 +63,8 @@ class ChallangeController extends Controller
             ]));
         }
         else{
-            // insert if weight doesn't exist          
-            Challange::create(request()->validate([              
+            // insert if weight doesn't exist
+            challenge::create(request()->validate([
                 'weight'=>'required',
                 'week'=>'required',
                 'user_id'=>'required',
@@ -76,7 +76,7 @@ class ChallangeController extends Controller
 
     public function destroy($weeknumber)
     {
-        Challange::where('week', $weeknumber)->delete();
+        challenge::where('week', $weeknumber)->delete();
 
         return redirect('/dashboard');
     }

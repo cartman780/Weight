@@ -3,7 +3,7 @@
 @section('content')
 
     <h1>Dashboard, {{ Auth::user()->name }}</h1>
-    
+
     <!-- succes alert -->
     @if (session('succesMsg'))
     <div class="alert alert-success" role="alert">
@@ -15,7 +15,7 @@
         <a href="/create" class="btn btn-sm btn-link float-right mb-3">Challenge toevoegen</a>
         <table class="table table-striped">
             <thead>
-            <tr>   
+            <tr>
                 <th scope="col">Week</th>
                 @foreach($users as $user)
                     <th scope="col">{{ $user->name }}</th>
@@ -31,7 +31,7 @@
                         <td>{{ $weight }}</td>
                     @endforeach
                     <td>
-                        {{-- <a href="/challange" class="btn btn-sm btn-primary" data-toggle="tooltip"
+                        {{-- <a href="/challenge" class="btn btn-sm btn-primary" data-toggle="tooltip"
                         data-placement="top" title=""
                         data-original-title="Open klantdossier"><i class="uil-arrow-right"></i></a> --}}
                     <a href="/{{ $weeknumber }}/edit" class="btn btn-sm btn-success" data-toggle="tooltip"
@@ -50,5 +50,5 @@
             </tbody>
         </table>
     </div>
-  
+
 @endsection

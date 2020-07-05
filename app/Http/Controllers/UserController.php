@@ -4,36 +4,36 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Challange;
+use App\challenge;
 
 class UserController extends Controller
 {
     public function index()
     {
         $users = User::all();
-        
+
         // get all challanges descending
-        $challanges = Challange::orderBy('week', 'DESC')->get();
-        
-        
+        $challanges = challenge::orderBy('week', 'DESC')->get();
+
+
         // make an array for every [week] that has an array with ['user' => 'weight'] in user_id order
         $weightArray = array();
 
         // how long is the list depending on amount of weeks
         $startweek = 1;
-        $endweek = Challange::max('week');
+        $endweek = challenge::max('week');
 
         // go through every week
         for ($i = $startweek; $i <= $endweek; $i++) {
-            
+
 
             // get weight foreach user and if no value set 0
             foreach ($users as $user) {
 
-                // get challange values per week
+                // get challenge values per week
                 $challenge = $user->challanges()->where('week', '=', $i)->get();
 
-                // if there is a challange
+                // if there is a challenge
                 if (count($challenge) > 0) {
                     // set a weight value for that user *!!FIX make weigt alue unique!!*
                     $weightArray[$i][$user->id] = $challenge[0]->weight;
@@ -44,7 +44,7 @@ class UserController extends Controller
                 }
             }
         }
-        
+
 
         return view('dashboard', compact('users', 'weightArray'));
     }
@@ -57,35 +57,35 @@ class UserController extends Controller
         $weightDif = array();
 
         // get list of weights of user
-        $challenges = Challange::where('user_id', $user_id)->get();
-        
+        $challenges = challenge::where('user_id', $user_id)->get();
+
         // make a buffer for previous values in the array
         $buffer = array();
-        
+
         // check if week weight is higher or lower than last week
         foreach ($challenges as $challenge) {
             $week = $challenge->week;
-            
+
             $weight = $challenge->weight;
-            
+
             // set default value if buffer is not set
             if (!isset($buffer[$week])) {
                 $buffer[$week] = $weight;
             }
-            
+
             // weight difference
             $weightDif[$week]['weight'] = $weight;
             $weightDif[$week]['weightDif'] = $buffer[$week] - $weight;
-            
+
             $week++;
-            
+
             // add value to buffer so the next value can check if it's higher or lower.
             $buffer[$week] = $weight;
-            
-        }  
+
+        }
         // dd($weightDif);
-        
-        return $weightDif;      
+
+        return $weightDif;
     }
 
     public function create()
