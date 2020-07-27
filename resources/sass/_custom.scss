@@ -4,22 +4,22 @@ body{
 }
 
 .background{
-    background: url('../public/images/sport2_bg.jpg');
+    background: url('/images/sport2_bg.jpg');
 
     /* Center and scale the image nicely */
     background-position: center;
-    // background-repeat: no-repeat;
+    background-repeat: no-repeat;
     background-size: cover;
     
 }
 
-.background{
-    background-image: url('../public/img/sport2_bg.jpg');
-    height: 100vh;
-    background-position: center;
-    overflow: hidden;
-    background-repeat: no-repeat;
-}
+// .background{
+//     background-image: url('/../public/img/sport2_bg.jpg');
+//     height: 100vh;
+//     background-position: center;
+//     overflow: hidden;
+//     background-repeat: no-repeat;
+// }
 
 .box{
     opacity: 90%;

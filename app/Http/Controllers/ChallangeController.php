@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\challenge;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class ChallangeController extends Controller
 {
@@ -15,7 +16,8 @@ class ChallangeController extends Controller
 
     public function create()
     {
-        return view('create');
+        $user = Auth::user();
+        return view('create', compact('user'));
     }
 
     public function store(Request $request)
@@ -46,7 +48,8 @@ class ChallangeController extends Controller
 
     public function edit($week)
     {
-        return view('edit', compact('week'));
+        $user = Auth::user();
+        return view('edit', compact('week', 'user'));
     }
 
     public function update(Request $request)

@@ -12,7 +12,7 @@
     @endif
 
     <div class="box">
-        <form action="/dashboard" method="post">
+        <form action="{{route('index')}}" method="post">
             @csrf
             <div class="row">
                 <div class="col-lg-3">

@@ -13,14 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::middleware('auth')->group(function () {
 
     // user
-    Route::get('/dashboard', 'UserController@index')->name('index');
+    Route::get('/', 'UserController@index')->name('index');
     Route::get('/user/{user}', 'UserController@show')->name('show');
 
     // challenge

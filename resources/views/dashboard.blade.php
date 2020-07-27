@@ -12,7 +12,7 @@
     @endif
 
     <div class="box">
-        <a href="/create" class="btn btn-sm btn-link float-right mb-3">Challenge toevoegen</a>
+        <a href="{{route('create')}}" class="btn btn-sm btn-link float-right mb-3">Challenge toevoegen</a>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -34,10 +34,10 @@
                         {{-- <a href="/challenge" class="btn btn-sm btn-primary" data-toggle="tooltip"
                         data-placement="top" title=""
                         data-original-title="Open klantdossier"><i class="uil-arrow-right"></i></a> --}}
-                    <a href="/{{ $weeknumber }}/edit" class="btn btn-sm btn-success" data-toggle="tooltip"
+                    <a href="{{route('edit', $user->id)}}" class="btn btn-sm btn-success" data-toggle="tooltip"
                         data-placement="top" title=""
                         data-original-title="Pas klantdossier aan"><i class="uil-pen"></i></a>
-                        <a href="/{{ $weeknumber }}/destroy" class="btn btn-sm btn-danger" data-toggle="tooltip"
+                        <a href="{{route('destroy', $user->id)}}" class="btn btn-sm btn-danger" data-toggle="tooltip"
                         data-placement="top" title=""
                         data-original-title="Verwijder klant" onclick="return confirm('Weet je zeker dat je deze klant wilt verwijderen?');"><i class="uil-trash-alt"></i></a>
                     </td>

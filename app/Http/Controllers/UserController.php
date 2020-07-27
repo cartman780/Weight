@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\challenge;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
         $users = User::all();
 
         // get all challanges descending
@@ -46,7 +48,7 @@ class UserController extends Controller
         }
 
 
-        return view('dashboard', compact('users', 'weightArray'));
+        return view('dashboard', compact('user', 'users', 'weightArray'));
     }
 
     public function highLow(){

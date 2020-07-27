@@ -6,6 +6,7 @@ use App\Post;
 use App\User;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -16,9 +17,10 @@ class PostController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
         $posts = Post::all();
 
-        return view('posts', compact('posts'));
+        return view('posts', compact('posts', 'user'));
     }
 
     /**
